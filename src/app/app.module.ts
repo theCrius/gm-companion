@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+// bootstrap
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { ElectronService } from './providers/electron.service';
 
 import { WebviewDirective } from './directives/webview.directive';
@@ -42,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    NgbModule.forRoot()
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
