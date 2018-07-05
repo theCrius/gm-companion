@@ -2,9 +2,10 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
-let win, serve;
+let win, serve, debug;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
+debug = args.some(val => val === '--debug');
 
 function createWindow() {
 
@@ -31,7 +32,9 @@ function createWindow() {
     }));
   }
 
+if (debug) {
   win.webContents.openDevTools();
+}
 
   // Emitted when the window is closed.
   win.on('closed', () => {
