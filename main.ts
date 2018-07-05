@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, session } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -20,28 +20,36 @@ function createWindow() {
     height: size.height
   });
 
-  if (serve) {
-    require('electron-reload')(__dirname, {
-     electron: require(`${__dirname}/node_modules/electron`)});
-    win.loadURL('http://localhost:4200');
-  } else {
-    win.loadURL(url.format({
-      pathname: path.join(__dirname, 'dist/index.html'),
-      protocol: 'file:',
-      slashes: true
-    }));
-  }
+  const ses = session.defaultSession;
+  ses.clearCache((err) => {
+    if (!err) {
+      if (serve) {
+        require('electron-reload')(__dirname, {
+          electron: require(`${__dirname}/node_modules/electron`)
+        });
+        win.loadURL('http://localhost:4200');
+      } else {
+        win.loadURL(url.format({
+          pathname: path.join(__dirname, 'dist/index.html'),
+          protocol: 'file:',
+          slashes: true
+        }));
+      }
 
-if (debug) {
-  win.webContents.openDevTools();
-}
+      if (debug) {
+        win.webContents.openDevTools();
+      }
 
-  // Emitted when the window is closed.
-  win.on('closed', () => {
-    // Dereference the window object, usually you would store window
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null;
+      // Emitted when the window is closed.
+      win.on('closed', () => {
+        // Dereference the window object, usually you would store window
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        win = null;
+      });
+    } else {
+      console.error(`[ ERROR ] Couldn't clear application cache`);
+    }
   });
 }
 
@@ -71,5 +79,6 @@ try {
 
 } catch (e) {
   // Catch Error
-  // throw e;
+  console.error(e);
+  throw e;
 }
