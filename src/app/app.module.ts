@@ -16,6 +16,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+// Fontawesome
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
+
 import { ElectronService } from './providers/electron.service';
 
 import { WebviewDirective } from './directives/webview.directive';
@@ -46,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
