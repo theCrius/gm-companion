@@ -2,6 +2,9 @@ import { app, BrowserWindow, screen, session } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+const Store = require('electron-store');
+const store = new Store();
+
 let win, serve, debug;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
@@ -22,34 +25,33 @@ function createWindow() {
 
   const ses = session.defaultSession;
   ses.clearCache((err) => {
-    if (!err) {
-      if (serve) {
-        require('electron-reload')(__dirname, {
-          electron: require(`${__dirname}/node_modules/electron`)
-        });
-        win.loadURL('http://localhost:4200');
-      } else {
-        win.loadURL(url.format({
-          pathname: path.join(__dirname, 'dist/index.html'),
-          protocol: 'file:',
-          slashes: true
-        }));
-      }
-
-      if (debug) {
-        win.webContents.openDevTools();
-      }
-
-      // Emitted when the window is closed.
-      win.on('closed', () => {
-        // Dereference the window object, usually you would store window
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        win = null;
-      });
-    } else {
+    if (err) {
       console.error(`[ ERROR ] Couldn't clear application cache`);
     }
+    if (serve) {
+      require('electron-reload')(__dirname, {
+        electron: require(`${__dirname}/node_modules/electron`)
+      });
+      win.loadURL('http://localhost:4200');
+    } else {
+      win.loadURL(url.format({
+        pathname: path.join(__dirname, 'dist/index.html'),
+        protocol: 'file:',
+        slashes: true
+      }));
+    }
+
+    if (debug) {
+      win.webContents.openDevTools();
+    }
+
+    // Emitted when the window is closed.
+    win.on('closed', () => {
+      // Dereference the window object, usually you would store window
+      // in an array if your app supports multi windows, this is the time
+      // when you should delete the corresponding element.
+      win = null;
+    });
   });
 }
 
