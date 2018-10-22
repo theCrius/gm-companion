@@ -19,6 +19,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // Toaster
 import { ToastrModule } from 'ngx-toastr';
 
+// Rich text editor
+import { QuillModule } from 'ngx-quill'
+
 // Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -73,7 +76,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     NgbModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    QuillModule
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
