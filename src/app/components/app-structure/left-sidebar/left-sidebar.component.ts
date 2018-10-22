@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventsService } from '../../../providers/events.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -9,8 +10,11 @@ import { EventsService } from '../../../providers/events.service';
 })
 export class LeftSidebarComponent implements OnInit {
 
-  sidebar: {
-    isOpen: boolean
+  icons = {
+    close: faTimes
+  }
+  sidebar =  {
+    isOpen: false
   }
 
   constructor(
@@ -19,9 +23,6 @@ export class LeftSidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sidebar = {
-      isOpen: false
-    };
     this.events.SidebarObservable$.subscribe(data => {
       if(data.toggleSidebar === true) {
         this.toggleSidebar();

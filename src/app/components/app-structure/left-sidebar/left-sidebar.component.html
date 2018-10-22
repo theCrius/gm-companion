@@ -1,6 +1,6 @@
 <nav class="sidebar bg-dark container shadow" [ngClass]="{'active': sidebar.isOpen}">
-  <button type="button" (click)="toggleSidebar()" class="btn btn-transparent ml-auto d-block">
-    <span class="text-primary">close</span>
+  <button type="button" (click)="toggleSidebar()" class="btn btn-transparent ml-auto mt-2 d-block">
+    <span class="text-primary">close <fa-icon [icon]="icons.close"></fa-icon></span>
   </button>
   <nav class="navbar navbar-dark bg-dark text-primary">
     <nav class="nav nav-pills flex-column">

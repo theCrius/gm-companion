@@ -7,7 +7,9 @@ import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  homeIcon = faDiceD20;
+  icons = {
+    home: faDiceD20
+  };
 
   constructor() { }
 
