@@ -16,6 +16,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+// Toaster
+import { ToastrModule } from 'ngx-toastr';
+
 // Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -28,7 +31,15 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/app-structure/header/header.component';
+import { ContainerComponent } from './components/app-structure//container/container.component';
+import { LeftSidebarComponent } from './components/app-structure//left-sidebar/left-sidebar.component';
 import { HomeComponent } from './components/home/home.component';
+import { CampaignsComponent } from './components/campaigns/campaigns.component';
+import { PlayersComponent } from './components/players/players.component';
+import { NpcsComponent } from './components/npcs/npcs.component';
+import { MapsComponent } from './components/maps/maps.component';
+import { AudioComponent } from './components/audio/audio.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,8 +49,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    WebviewDirective,
+    HeaderComponent,
+    ContainerComponent,
+    LeftSidebarComponent,
     HomeComponent,
-    WebviewDirective
+    CampaignsComponent,
+    PlayersComponent,
+    NpcsComponent,
+    MapsComponent,
+    AudioComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<nav class="sidebar bg-dark container shadow" [ngClass]="{'active': sidebar.isOpen}">
+  <button type="button" (click)="toggleSidebar()" class="btn btn-transparent ml-auto d-block">
+    <span class="text-primary">close</span>
+  </button>
+  <nav class="navbar navbar-dark bg-dark text-primary">
+    <nav class="nav nav-pills flex-column">
+      <a class="nav-link clickable lead" (click)="goTo('campaigns')">Campaigns</a>
+      <a class="nav-link clickable lead" (click)="goTo('players')">Players</a>
+      <a class="nav-link clickable lead" (click)="goTo('npcs')">NPCs</a>
+      <a class="nav-link clickable lead" (click)="goTo('maps')">Maps</a>
+      <a class="nav-link clickable lead" (click)="goTo('audio')">Audio</a>
+    </nav>
+  </nav>
+</nav>
