@@ -30,6 +30,8 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fas, far);
 
 import { ElectronService } from './providers/electron.service';
+import { EventsService } from './providers/events.service';
+import { EditorService } from './providers/editor.service';
 
 import { WebviewDirective } from './directives/webview.directive';
 
@@ -43,6 +45,7 @@ import { PlayersComponent } from './components/players/players.component';
 import { NpcsComponent } from './components/npcs/npcs.component';
 import { MapsComponent } from './components/maps/maps.component';
 import { AudioComponent } from './components/audio/audio.component';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -79,7 +82,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule,
     QuillModule
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    EventsService,
+    EditorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

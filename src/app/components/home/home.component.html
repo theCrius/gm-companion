@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h1><fa-icon [icon]="icons.home"></fa-icon> Home Page</h1>
   <div>
-    <quill-editor [modules]="editorOptions.description" theme="snow"></quill-editor>
+    <quill-editor [modules]="config" [ngModel]="text"></quill-editor>
   </div>
 </div>
